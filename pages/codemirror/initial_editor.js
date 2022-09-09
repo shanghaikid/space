@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useEffect } from "react";
 import Head from "next/head";
 import { EditorState } from "@codemirror/state";
 import {EditorView, basicSetup} from "codemirror"
@@ -8,7 +8,7 @@ export default function CodeMirror() {
   const editorEl = useRef(null);
   const editor = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (editor.current) return;
     let startState = EditorState.create({
       doc: "Select * from milvus.collection",
