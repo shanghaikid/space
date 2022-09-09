@@ -2,7 +2,6 @@ import { useRef, useEffect } from "react";
 import Head from "next/head";
 import { EditorState } from "@codemirror/state";
 import { EditorView, basicSetup } from "codemirror";
-import styles from "../../styles/CodeMirror.module.css";
 
 const sql = `/* Tutorial 1: Sample queries on TPC-H data
 Prerequisites

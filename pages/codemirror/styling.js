@@ -6,8 +6,6 @@ import { EditorView, keymap } from "@codemirror/view";
 import { insertTab } from "@codemirror/commands";
 import { indentUnit } from "@codemirror/language";
 
-import styles from "../../styles/CodeMirror.module.css";
-
 const sql = `/* Tutorial 1: Sample queries on TPC-H data
 Prerequisites
 This tutorial requires the Snowflake provided
