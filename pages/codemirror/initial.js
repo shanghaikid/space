@@ -88,7 +88,7 @@ export default function CodeMirror() {
       </Head>
 
       <main className={styles.main}>
-        <h1>codemirror</h1>
+        <h1>Initial editor</h1>
         <div ref={editorEl}></div>
       </main>
     </div>
