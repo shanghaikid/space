@@ -1,8 +1,7 @@
 import { useRef, useLayoutEffect } from "react";
 import Head from "next/head";
 import { EditorState } from "@codemirror/state";
-import { EditorView, keymap } from "@codemirror/view";
-import { defaultKeymap } from "@codemirror/commands";
+import {EditorView, basicSetup} from "codemirror"
 import styles from "../../styles/CodeMirror.module.css";
 
 export default function CodeMirror() {
@@ -13,7 +12,7 @@ export default function CodeMirror() {
     if (editor.current) return;
     let startState = EditorState.create({
       doc: "Select * from milvus.collection",
-      extensions: [keymap.of(defaultKeymap)],
+      extensions: [basicSetup],
     });
 
     editor.current = new EditorView({

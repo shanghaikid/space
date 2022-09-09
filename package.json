@@ -12,6 +12,7 @@
     "@codemirror/commands": "^6.1.0",
     "@codemirror/state": "^6.1.1",
     "@codemirror/view": "^6.2.3",
+    "codemirror": "^6.0.1",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
