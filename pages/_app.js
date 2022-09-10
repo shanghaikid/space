@@ -1,12 +1,10 @@
 import "../styles/globals.css";
-import Head from 'next/head';
 import Script from 'next/script'
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Head>
-        <Script
+     <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-V4TNY0123V"
           strategy="afterInteractive"
         />
@@ -16,7 +14,6 @@ function MyApp({ Component, pageProps }) {
             gtag('js', new Date());
             gtag('config', 'G-V4TNY0123V');`}
         </Script>
-      </Head>
       <Component {...pageProps} />
     </>
   );
