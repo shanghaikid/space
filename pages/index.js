@@ -13,11 +13,11 @@ export default function Home({ posts }) {
       </Head>
 
       <main className="p-4">
-        <h1 class="text-4xl font-bold mb-4">1984.pro</h1>
+        <h1 className="text-4xl font-bold mb-4">1984.pro</h1>
         <div className="post-container">
           <ul className="flex list-disc px-4">
             {posts.map(({ slug, frontmatter }) => (
-              <li>
+              <li key={slug}>
                 <Link href={`/p/${slug}`}>
                   <a className="hover:underline text-blue-700	text-1xl font-bold">
                     {frontmatter.title}
