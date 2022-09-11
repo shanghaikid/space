@@ -12,21 +12,20 @@ export default function Home({ posts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1>1984.pro</h1>
+      <main className="p-4">
+        <h1 class="text-4xl font-bold mb-4">1984.pro</h1>
         <div className="post-container">
-          {posts.map(({ slug, frontmatter }) => (
-            <div
-              key={slug}
-              className="border border-gray-200 m-2 rounded-xl shadow-lg overflow-hidden flex flex-col"
-            >
-              <Link href={`/p/${slug}`}>
-                <a>
-                  <h2 className="p-4">{frontmatter.title}</h2>
-                </a>
-              </Link>
-            </div>
-          ))}
+          <ul className="flex list-disc px-4">
+            {posts.map(({ slug, frontmatter }) => (
+              <li>
+                <Link href={`/p/${slug}`}>
+                  <a className="hover:underline text-blue-700	text-1xl font-bold">
+                    {frontmatter.title}
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
     </div>
