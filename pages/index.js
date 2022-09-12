@@ -19,7 +19,7 @@ export default function Home({ posts }) {
             {posts.map(({ slug, frontmatter }) => (
               <li key={slug}>
                 <Link href={`/p/${slug}`}>
-                  <a className="hover:underline text-blue-700	text-1xl font-bold">
+                  <a className="hover:underline text-blue-700	text-1xl">
                     {frontmatter.title}
                   </a>
                 </Link>
