@@ -4,8 +4,13 @@ import { basicSetup } from "codemirror";
 import { EditorState } from "@codemirror/state";
 import { EditorView, keymap } from "@codemirror/view";
 import { insertTab } from "@codemirror/commands";
-import { indentUnit } from "@codemirror/language";
-import { sql } from "@codemirror/lang-sql";
+import {
+  indentUnit,
+  HighlightStyle,
+  syntaxHighlighting,
+} from "@codemirror/language";
+import { tags } from "@lezer/highlight";
+import { sql, SQLDialect } from "@codemirror/lang-sql";
 
 const doc = `/* Tutorial 1: Sample queries on TPC-H data
 Prerequisites
@@ -38,7 +43,7 @@ in each group is included.
 
 use schema snowflake_sample_data.tpch_sf1; 
 
-selct database_refresh_history(d)
+select database_refresh_history(d)
 
 SELECT
 l_returnflag,
@@ -71,13 +76,45 @@ export default function CodeMirror() {
 
   useEffect(() => {
     if (editor.current) return;
+    // sql highlight color
+    const definedStyle = HighlightStyle.define([
+      { tag: tags.keyword, color: "#085bd7" },
+      { tag: tags.bracket, color: "#333" },
+      { tag: tags.number, color: "#0c7e5e" },
+      { tag: tags.string, color: "#bf0822" },
+      { tag: tags.function, color: "blue" },
+      { tag: tags.comment, color: "#a2a2a2", fontStyle: "italic" },
+    ]);
+
+      console.log(tags)
     let state = EditorState.create({
       doc: doc,
       extensions: [
         basicSetup,
         keymap.of([{ key: "Tab", run: insertTab }]), // fix tab behaviour
         indentUnit.of("    "), // fix tab indentation
-        sql(),
+        sql({
+          dialect: SQLDialect.define({
+            keywords:
+              "vector as avg sum select from where group order by dateadd database_refresh_history to_date count",
+            builtin:
+              "appinfo arraysize autocommit autoprint autorecovery autotrace blockterminator break btitle cmdsep colsep compatibility compute concat copycommit copytypecheck define echo editfile embedded feedback flagger flush heading headsep instance linesize lno loboffset logsource longchunksize markup native newpage numformat numwidth pagesize pause pno recsep recsepchar repfooter repheader serveroutput shiftinout show showmode spool sqlblanklines sqlcase sqlcode sqlcontinue sqlnumber sqlpluscompatibility sqlprefix sqlprompt sqlterminator suffix tab term termout timing trimout trimspool ttitle underline verify version wrap",
+            types:
+              "ascii bfile bfilename bigserial bit blob dec long number nvarchar nvarchar2 serial smallint string text uid varchar2 xml",
+            operatorChars: "*/+-%<>!=~",
+            doubleQuotedStrings: true,
+            charSetCasts: true,
+          }),
+          schema: {
+            t2: [
+              { label: "c1", detail: "column name", type: "column" },
+              { label: "c2", detail: "column name", type: "column" },
+              { label: "z2x2", detail: "column name", type: "column" },
+            ],
+          },
+          tables: [{ label: "t2", detail: "table name", type: "table" }], // https://codemirror.net/docs/ref/#autocomplete.Completion
+          upperCaseKeywords: false,
+        }),
         EditorView.theme({
           "&.cm-editor": {
             "&.cm-focused": {
@@ -113,8 +150,13 @@ export default function CodeMirror() {
             fontWeight: "bold",
           },
         }),
+        syntaxHighlighting(definedStyle),
       ],
     });
+
+    console.log();
+
+    // init view
     editor.current = new EditorView({
       state,
       parent: editorEl.current,
