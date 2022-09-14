@@ -174,6 +174,12 @@ export default function CodeMirror() {
           },
           ".cm-tooltip-autocomplete .cm-completionIcon": {
             display: "block",
+            fontSize: "13.5px",
+            order: 2,
+          },
+          ".cm-tooltip-autocomplete .cm-completionDetail": {
+            display: "block",
+            fontSize: "13.5px",
             order: 2,
           },
           ".cm-tooltip-autocomplete>ul>li[aria-selected=true]": {
