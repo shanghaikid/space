@@ -188,6 +188,15 @@ export default function CodeMirror() {
             borderColor: "#e2e3e5",
             borderLeftColor: "#1a6ce7",
           },
+          ".cm-completionIcon-keyword:after": {
+            content: "'keyword'"
+          },
+          ".cm-completionIcon-variable:after": {
+            content: "'variable'"
+          },
+          ".cm-completionIcon-type:after": {
+            content: "'type'"
+          }
         }),
         EditorView.baseTheme({
           "&light .cm-selectionBackground": {
