@@ -170,6 +170,7 @@ export default function CodeMirror() {
             display: "block",
             fontSize: "13.5px",
             fontWeight: "bold",
+            marginBottom: "3px",
             order: 1,
           },
           ".cm-tooltip-autocomplete .cm-completionIcon": {
@@ -189,14 +190,14 @@ export default function CodeMirror() {
             borderLeftColor: "#1a6ce7",
           },
           ".cm-completionIcon-keyword:after": {
-            content: "'keyword'"
+            content: "'keyword'",
           },
           ".cm-completionIcon-variable:after": {
-            content: "'variable'"
+            content: "'variable'",
           },
           ".cm-completionIcon-type:after": {
-            content: "'type'"
-          }
+            content: "'type'",
+          },
         }),
         EditorView.baseTheme({
           "&light .cm-selectionBackground": {
