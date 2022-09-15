@@ -83,7 +83,7 @@ export default function CodeMirror() {
       { tag: tags.bracket, color: "#333" },
       { tag: tags.number, color: "#0c7e5e" },
       { tag: tags.string, color: "#bf0822" },
-      { tag: tags.function, color: "blue" },
+      { tag: tags.standard(tags.name), color: "blue" },
       { tag: tags.comment, color: "#a2a2a2", fontStyle: "italic" },
     ]);
 
@@ -98,7 +98,7 @@ export default function CodeMirror() {
             keywords:
               "vector as avg sum select from where group order by dateadd database_refresh_history to_date count",
             builtin:
-              "appinfo arraysize autocommit autoprint autorecovery autotrace blockterminator break btitle cmdsep colsep compatibility compute concat copycommit copytypecheck define echo editfile embedded feedback flagger flush heading headsep instance linesize lno loboffset logsource longchunksize markup native newpage numformat numwidth pagesize pause pno recsep recsepchar repfooter repheader serveroutput shiftinout show showmode spool sqlblanklines sqlcase sqlcode sqlcontinue sqlnumber sqlpluscompatibility sqlprefix sqlprompt sqlterminator suffix tab term termout timing trimout trimspool ttitle underline verify version wrap",
+              "appinfo version show",
             types:
               "ascii bfile bfilename bigserial bit blob dec long number nvarchar nvarchar2 serial smallint string text uid varchar2 xml",
             operatorChars: "*/+-%<>!=~",
@@ -181,6 +181,8 @@ export default function CodeMirror() {
           ".cm-tooltip-autocomplete .cm-completionDetail": {
             display: "block",
             fontSize: "13.5px",
+            marginLeft: 0,
+            fontStyle: "normal",
             order: 2,
           },
           ".cm-tooltip-autocomplete>ul>li[aria-selected=true]": {

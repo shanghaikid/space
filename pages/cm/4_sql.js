@@ -4,7 +4,6 @@ import { basicSetup } from "codemirror";
 import { EditorState } from "@codemirror/state";
 import { EditorView, keymap } from "@codemirror/view";
 import { insertTab } from "@codemirror/commands";
-import { autocompletion, acceptCompletion } from "@codemirror/autocomplete";
 import {
   indentUnit,
   HighlightStyle,
@@ -44,7 +43,7 @@ in each group is included.
 
 use schema snowflake_sample_data.tpch_sf1; 
 
-select database_refresh_history(d);
+select database_refresh_history(d)
 
 SELECT
 l_returnflag,
@@ -91,17 +90,13 @@ export default function CodeMirror() {
       doc: doc,
       extensions: [
         basicSetup,
-        keymap.of([
-          { key: "Tab", run: acceptCompletion },
-          { key: "Tab", run: insertTab },
-        ]), // fix tab behaviour
+        keymap.of([{ key: "Tab", run: insertTab }]), // fix tab behaviour
         indentUnit.of("    "), // fix tab indentation
         sql({
           dialect: SQLDialect.define({
             keywords:
               "vector as avg sum select from where group order by dateadd database_refresh_history to_date count",
-            builtin:
-              "appinfo version show",
+            builtin: "appinfo version show",
             types:
               "ascii bfile bfilename bigserial bit blob dec long number nvarchar nvarchar2 serial smallint string text uid varchar2 xml",
             operatorChars: "*/+-%<>!=~",
@@ -117,12 +112,6 @@ export default function CodeMirror() {
           },
           tables: [{ label: "t2", detail: "table name", type: "table" }], // https://codemirror.net/docs/ref/#autocomplete.Completion
           upperCaseKeywords: false,
-        }),
-        autocompletion({
-          closeOnBlur: false,
-          optionClass: () => {
-            return "my-auto"; // applied to li
-          },
         }),
         EditorView.theme({
           "&.cm-editor": {
@@ -142,66 +131,6 @@ export default function CodeMirror() {
           ".cm-activeLine": { backgroundColor: "transparent" },
           ".cm-lineNumbers .cm-gutterElement": {
             padding: "0 22px 0 26px",
-          },
-          // auto completion box style
-          ".cm-tooltip.cm-tooltip-autocomplete": {
-            border: "none",
-            transform: "translateX(-16px)", // adjust box position to align with the text
-          },
-          ".cm-tooltip.cm-tooltip-autocomplete>ul": {
-            fontFamily: "ApercuMonoPro Light",
-            maxHeight: "208px",
-            border: "1px solid transparent",
-            borderRadius: "4px",
-            boxShadow: "0 4px 16px rgb(52 56 59 / 13%)",
-          },
-          ".cm-tooltip.cm-tooltip-autocomplete>ul li": {
-            display: "flex",
-            flexDirection: "column",
-            maxWidth: "400px",
-            minWidth: "300px",
-            whiteSpace: "normal",
-            paddingTop: "6px",
-            border: "none",
-            borderColor: "#e2e3e5",
-            borderBottom: "1px solid transparent",
-            paddingBottom: "8px",
-            padding: "6px 12px 8px",
-            borderLeft: "4px solid transparent",
-          },
-          ".cm-tooltip-autocomplete .cm-completionLabel": {
-            display: "block",
-            fontSize: "13.5px",
-            fontWeight: "bold",
-            marginBottom: "3px",
-            order: 1,
-          },
-          ".cm-tooltip-autocomplete .cm-completionIcon": {
-            display: "block",
-            fontSize: "13.5px",
-            order: 2,
-          },
-          ".cm-tooltip-autocomplete .cm-completionDetail": {
-            display: "block",
-            fontSize: "13.5px",
-            marginLeft: 0,
-            fontStyle: "normal",
-            order: 2,
-          },
-          ".cm-tooltip-autocomplete>ul>li[aria-selected=true]": {
-            backgroundColor: "#fff",
-            color: "#484D52",
-            borderColor: "#e2e3e5",
-            borderLeftColor: "#1a6ce7",
-          },
-          ".cm-completionIcon-keyword:after": {
-            content: "'keyword'",
-          },
-          ".cm-completionIcon-variable:after": {
-            content: "'variable'",
-          },
-          ".cm-completionIcon-type:after": {
-            content: "'type'",
           },
         }),
         EditorView.baseTheme({
@@ -230,7 +159,7 @@ export default function CodeMirror() {
     });
   }, []);
 
-  const title = `Tab completion`;
+  const title = `Sql Highlight`;
   return (
     <div className="container">
       <Head>
