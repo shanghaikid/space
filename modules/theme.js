@@ -1,4 +1,6 @@
 import { EditorView } from "@codemirror/view";
+import { tags } from "@lezer/highlight";
+import { syntaxHighlighting, HighlightStyle } from "@codemirror/language";
 
 export const theme = EditorView.theme({
   "&.cm-editor": {
@@ -84,3 +86,19 @@ export const baseTheme = EditorView.baseTheme({
     fontWeight: "bold",
   },
 });
+
+// sql highlight color
+export const highlights = syntaxHighlighting(
+  HighlightStyle.define([
+    { tag: tags.keyword, color: "#085bd7" },
+    { tag: tags.literal, color: "#000"},
+    { tag: tags.operator, color: "red"},
+    { tag: tags.annotation, color: "blue"},
+    { tag: tags.bracket, color: "#333" },
+    { tag: tags.number, color: "#0c7e5e" },
+    { tag: tags.string, color: "#085bd7" },
+    { tag: tags.function, color: "blue" },
+    { tag: tags.lineComment, color: "#a2a2a2", fontStyle: "italic" },
+    { tag: tags.comment, color: "#a2a2a2", fontStyle: "italic" },
+  ])
+);

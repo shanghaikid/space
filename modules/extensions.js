@@ -107,6 +107,7 @@ const sqlSyntaxHighlight = syntaxHighlighting(
     { tag: tags.number, color: "#0c7e5e" },
     { tag: tags.string, color: "#bf0822" },
     { tag: tags.function, color: "blue" },
+    { tag: tags.lineComment, color: "#a2a2a2", fontStyle: "italic" },
     { tag: tags.comment, color: "#a2a2a2", fontStyle: "italic" },
   ])
 );

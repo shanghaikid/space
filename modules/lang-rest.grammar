@@ -1,0 +1,33 @@
+@top Restful { Rest }
+
+Rest {
+  VERB Path+
+}
+
+@skip { space | LineComment }
+
+@tokens {
+  Identifier {$[a-zA-Z0-9._\-\+]+ }
+  divide { '/' }
+  Path {
+    "/" Keyword ("/" Identifier)* (Action Query | Query)? 
+  }
+  Keyword {"collections" | "partitions" | "data" | "users" | "indexes" | "entities" }
+  Action {"load" | "unload" }
+  Query {"?"$[_[\]=,&><a-zA-Z0-9]+ }
+  VERB { 
+    $[gG]$[eE]$[tT] |
+    $[pP]$[oO]$[sS]$[tT] |
+    $[pP]$[uU]$[tT] |
+    $[dD]$[eE]$[lL]$[eE]$[tT]$[eE] |
+    $[pP]$[aA]$[tT]$[cC]$[hH] |
+    $[hH]$[eE]$[aA]$[dD]
+  }
+
+  LineComment { "#" ![\n]* }
+  newLine { $[\n\r] }
+
+  space { @whitespace+ }
+  @precedence { newLine, space }
+}
+
