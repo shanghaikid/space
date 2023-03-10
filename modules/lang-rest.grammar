@@ -1,7 +1,11 @@
 @top Restful { Rest }
 
 Rest {
-  VERB Path+
+  VERB URL
+}
+
+URL {
+  "/" Keyword ("/" Identifier)* (Action Query | Query)? 
 }
 
 @skip { space | LineComment }

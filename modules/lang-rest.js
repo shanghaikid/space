@@ -3,7 +3,7 @@ import { parser } from "./lang-rest-parser.js";
 import { styleTags, tags as t } from "@lezer/highlight";
 import { LRLanguage } from "@codemirror/language";
 import { LanguageSupport } from "@codemirror/language";
-import { completeFromList } from "@codemirror/autocomplete";
+import { autocomplete } from "./completion";
 
 let parserWithMetadata = parser.configure({
   props: [
@@ -29,16 +29,9 @@ export const restLanguage = LRLanguage.define({
 });
 
 export const restCompletion = restLanguage.data.of({
-  autocomplete: completeFromList([
-    { label: "defun", type: "keyword" },
-    { label: "defvar", type: "keyword" },
-    { label: "let", type: "keyword" },
-    { label: "cons", type: "function" },
-    { label: "car", type: "function" },
-    { label: "cdr", type: "function" },
-  ]),
+  autocomplete,
 });
 
 export function rest() {
-  return new LanguageSupport(restLanguage, []);
+  return new LanguageSupport(restLanguage, [restCompletion]);
 }

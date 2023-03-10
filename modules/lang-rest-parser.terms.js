@@ -4,4 +4,8 @@ export const
   Restful = 2,
   Rest = 3,
   VERB = 4,
-  Path = 5
+  URL = 5,
+  Keyword = 6,
+  Identifier = 7,
+  Action = 8,
+  Query = 9
