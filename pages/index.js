@@ -18,10 +18,11 @@ export default function Home({ posts }) {
           <ul className="flex list-disc px-4">
             {posts.map(({ slug, frontmatter }) => (
               <li key={slug}>
-                <Link href={`/p/${slug}`}>
-                  <a className="hover:underline text-blue-700	text-1xl">
-                    {frontmatter.title}
-                  </a>
+                <Link
+                  href={`/p/${slug}`}
+                  className="hover:underline text-blue-700	text-1xl"
+                >
+                  {frontmatter.title}
                 </Link>
               </li>
             ))}
